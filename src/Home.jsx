@@ -6,7 +6,7 @@ export const Home = () => {
       <h1 className="text-3xl font-bold text-black-800 mb-8 text-center">
         Plants
       </h1>
-      
+
       <PlantsList></PlantsList>
     </div>
   );
