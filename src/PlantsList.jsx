@@ -58,16 +58,17 @@ export const PlantsList = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+    <div className="lisu-bosa-regular grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
       {plants.map((plant) => {
         return (
           <div
             key={plant.id}
             className="w-60 p-2 bg-white rounded-xl flex-column"
           >
-            <h4 className="font-bold text-lg">{plant.name}</h4>
-            <p className="text-sm text-gray-600">{plant.location}</p>
             <img alt="plant picture" src={plant.image}></img>
+
+            <h4 className="text-lg">{plant.name}</h4>
+            <p className="text-sm">{plant.location}</p>
             <p>Last Watered: {plant.wateredAt[plant.wateredAt.length - 1].toLocaleString()}</p>
             <button
               onClick={() => {
