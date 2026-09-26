@@ -1,7 +1,7 @@
 export const AddPlantModal = () => {
     
   return (
-    <div>
+    <div >
       <form className="lisu-bosa-regular"> 
         <label htmlFor="plantName">Name</label>
         <input />
