@@ -62,16 +62,12 @@ export const PlantsList = () => {
     <div className="lisu-bosa-regular grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
       {plants.map((plant) => {
         return (
-          <div
+          <PlantCard
             key={plant.id}
-            className="w-60 p-2 bg-white rounded-xl flex-column"
-          >
-            <PlantCard
-              plant={plant}
-              onRemove={handleRemovePlant}
-              onWater={handleWaterPlant}
-            ></PlantCard>
-          </div>
+            plant={plant}
+            onRemove={handleRemovePlant}
+            onWater={handleWaterPlant}
+          ></PlantCard>
         );
       })}
     </div>
