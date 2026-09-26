@@ -1,4 +1,4 @@
-export const PlantCard = ({ plant, onRemove, onWater }) => {
+export const PlantCard = ({ plant, onRemove, onWater, onClick}) => {
   const getDaysSinceWater = (date) => {
     const millisecondsPerDay = 1000 * 60 * 60 * 24;
     return Math.floor((Date.now() - date.getTime()) / millisecondsPerDay);
@@ -15,7 +15,8 @@ export const PlantCard = ({ plant, onRemove, onWater }) => {
         : `watered ${daysSinceWater} days ago`;
 
   return (
-    <div className="w-60 p-4 bg-white shadow-md rounded-lg flex-column">
+    <div className="w-60 p-4 bg-white shadow-md rounded-lg flex-column"
+      onClick={onClick}>
       <img
         className="w-full aspect-square object-cover rounded-lg"
         alt="plant picture"

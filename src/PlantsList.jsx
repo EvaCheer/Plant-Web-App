@@ -28,7 +28,7 @@ const initialPlants = [
   },
 ];
 
-export const PlantsList = () => {
+export const PlantsList = ({waterMode}) => {
   const [plants, setPlants] = useState(initialPlants);
 
   const handleAddPlant = () => {
@@ -67,6 +67,7 @@ export const PlantsList = () => {
             plant={plant}
             onRemove={handleRemovePlant}
             onWater={handleWaterPlant}
+            onClick={waterMode ? () => handleWaterPlant(plant.id) : undefined }
           ></PlantCard>
         );
       })}
