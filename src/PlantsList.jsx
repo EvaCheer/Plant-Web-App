@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PlantCard } from "./PlantCard";
 
 const initialPlants = [
   {
@@ -65,25 +66,11 @@ export const PlantsList = () => {
             key={plant.id}
             className="w-60 p-2 bg-white rounded-xl flex-column"
           >
-            <img alt="plant picture" src={plant.image}></img>
-
-            <h4 className="text-lg">{plant.name}</h4>
-            <p className="text-sm">{plant.location}</p>
-            <p>Last Watered: {plant.wateredAt[plant.wateredAt.length - 1].toLocaleString()}</p>
-            <button
-              onClick={() => {
-                handleRemovePlant(plant.id);
-              }}
-            >
-              Remove
-            </button>
-            <button
-              onClick={() => {
-                handleWaterPlant(plant.id);
-              }}
-            >
-              Water
-            </button>
+            <PlantCard
+              plant={plant}
+              onRemove={handleRemovePlant}
+              onWater={handleWaterPlant}
+            ></PlantCard>
           </div>
         );
       })}
