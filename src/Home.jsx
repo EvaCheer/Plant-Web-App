@@ -25,6 +25,11 @@ export const Home = () => {
 
   return (
     <div
+      className={
+        waterMode
+          ? "cursor-[url('/watering-can-cursor.png'),_auto]"
+          : "cursor-auto"
+      }
       onClick={handleBackgroundClick}
     >
       <div className="flex items-center gap-10 mb-12">
@@ -37,7 +42,7 @@ export const Home = () => {
         Add plant
       </button>
 
-      {isAddModalOpen && <AddPlantModal />}
+      <AddPlantModal isAddModalOpen={isAddModalOpen} onClose={toggleAddPlantModal}></AddPlantModal>
     </div>
   );
 };

@@ -15,7 +15,7 @@ export const PlantCard = ({ plant, onRemove, onWater, onClick}) => {
         : `watered ${daysSinceWater} days ago`;
 
   return (
-    <div className="w-60 p-4 bg-white shadow-md rounded-lg flex-column"
+    <div className="w-60 pt-4 px-4 pb-2 bg-white shadow-md rounded-lg flex-column"
       onClick={onClick}>
       <img
         className="w-full aspect-square object-cover rounded-lg"
@@ -29,7 +29,7 @@ export const PlantCard = ({ plant, onRemove, onWater, onClick}) => {
         <p className="text-sm font-thin text-[#999998]">{wateredText}</p>
       </div>
 
-      <button
+{/*       <button
         onClick={() => {
           onRemove(plant.id);
         }}
@@ -42,7 +42,7 @@ export const PlantCard = ({ plant, onRemove, onWater, onClick}) => {
         }}
       >
         Water
-      </button>
+      </button> */}
     </div>
   );
 };
