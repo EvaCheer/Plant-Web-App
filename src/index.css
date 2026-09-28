@@ -13,3 +13,12 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background-color: #EEE4DF;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+}
