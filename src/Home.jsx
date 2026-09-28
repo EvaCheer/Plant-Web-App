@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { PlantsList } from "./PlantsList.jsx";
-import { AddPlantModal } from "./AddPlantModal";
-import { UtilityBar } from "./UtilityBar.jsx";
+import { PlantsList } from "./Components/PlantsList.jsx";
+import { Modal } from "./Components/Modal.jsx";
+import { UtilityBar } from "./Components/UtilityBar.jsx";
+import { AddPlantForm } from "./Components/AddPlantForm.jsx";
 
 export const Home = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -42,7 +43,9 @@ export const Home = () => {
         Add plant
       </button>
 
-      <AddPlantModal isAddModalOpen={isAddModalOpen} onClose={toggleAddPlantModal}></AddPlantModal>
+      <Modal isAddModalOpen={isAddModalOpen}>
+              <AddPlantForm onClose={toggleAddPlantModal}></AddPlantForm>
+      </Modal>
     </div>
   );
 };

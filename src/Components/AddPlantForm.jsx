@@ -1,10 +1,6 @@
-export const AddPlantModal = ({ isAddModalOpen, onClose }) => {
-  return (
-    <div
-      className={`fixed inset-0 flex justify-center items-center 
-        transition-colors transition-opacity duration-300 ${isAddModalOpen ? "visible bg-black/20" : "invisible"}`}
-    >
-      <form className="lisu-bosa-regular bg-[#FFFCF1] flex flex-col gap-4 rounded-md p-4 px-10">
+export const AddPlantForm = ({onClose}) => {
+    return (
+        <form className="lisu-bosa-regular bg-[#FFFCF1] flex flex-col gap-4 rounded-md p-4 px-10">
         <div className="flex flex-col gap-1">
           <label htmlFor="plantName">Name*</label>
           <input
@@ -39,6 +35,5 @@ export const AddPlantModal = ({ isAddModalOpen, onClose }) => {
           <button type="submit">Add Plant</button>
         </div>
       </form>
-    </div>
-  );
-};
+    )
+}
