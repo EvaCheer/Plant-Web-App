@@ -1,5 +1,10 @@
-export const PlantCard = ({ plant, onRemove, onWater, onClick}) => {
+export const PlantCard = ({ plant, onRemove, onWater, onClick }) => {
   const getDaysSinceWater = (date) => {
+
+    if(date===undefined) {
+      return undefined
+    }
+
     const millisecondsPerDay = 1000 * 60 * 60 * 24;
     return Math.floor((Date.now() - date.getTime()) / millisecondsPerDay);
   };
@@ -7,21 +12,33 @@ export const PlantCard = ({ plant, onRemove, onWater, onClick}) => {
   const lastWatered = plant.wateredAt[plant.wateredAt.length - 1];
   const daysSinceWater = getDaysSinceWater(lastWatered);
 
-  const wateredText =
-    daysSinceWater === 0
-      ? "watered today"
-      : daysSinceWater === 1
-        ? "watered yesterday"
-        : `watered ${daysSinceWater} days ago`;
+  let wateredText;
+  
+  switch (daysSinceWater) {
+    case 0:
+      wateredText = "watered today";
+      break;
+    case 1:
+      wateredText = "watered yesterday";
+      break;
+    case undefined:
+      wateredText = "no water history";
+      break;
+    default:
+      wateredText = `watered ${daysSinceWater} days ago`
+  }
 
   return (
-    <div className="w-60 pt-4 px-4 pb-2 bg-white shadow-md rounded-lg flex-column"
-      onClick={onClick}>
+    <div
+      className="w-60 pt-4 px-4 pb-2 bg-white shadow-md rounded-lg flex-column"
+      onClick={onClick}
+    >
       <img
         className="w-full aspect-square object-cover rounded-lg"
         alt="plant picture"
         src={plant.image}
       ></img>
+      
 
       <div className="py-2">
         <h4 className="text-lg">{plant.name}</h4>
@@ -29,7 +46,7 @@ export const PlantCard = ({ plant, onRemove, onWater, onClick}) => {
         <p className="text-sm font-thin text-[#999998]">{wateredText}</p>
       </div>
 
-{/*       <button
+      {/*       <button
         onClick={() => {
           onRemove(plant.id);
         }}

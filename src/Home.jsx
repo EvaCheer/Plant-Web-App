@@ -5,6 +5,34 @@ import { UtilityBar } from "./Components/UtilityBar.jsx";
 import { AddPlantForm } from "./Components/AddPlantForm.jsx";
 
 export const Home = () => {
+  const initialPlants = [
+    {
+      id: 1,
+      name: "Monstera",
+      description: "The big monstera in the livingroom.",
+      location: "Livingroom",
+      image:
+        "https://i.pinimg.com/736x/e7/48/b3/e748b3ee9dcdbf60bb924fb9d207c3e5.jpg",
+      wateredAt: [
+        new Date("2026-09-16T03:24:00"),
+        new Date("2026-09-18T04:24:00"),
+      ],
+    },
+    {
+      id: 2,
+      name: "Money Tree",
+      description: "Small one on the desk.",
+      location: "Bedroom",
+      image:
+        "https://i.pinimg.com/736x/e7/48/b3/e748b3ee9dcdbf60bb924fb9d207c3e5.jpg",
+      wateredAt: [
+        new Date("2026-09-16T03:24:00"),
+        new Date("2026-09-18T05:44:00"),
+      ],
+    },
+  ];
+
+  const [plants, setPlants] = useState(initialPlants);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [waterMode, setWaterMode] = useState(false);
 
@@ -24,6 +52,13 @@ export const Home = () => {
     }
   };
 
+  const handleOnAddPlant = (newPlant) => {
+    setPlants((currentPlants) => [
+      ...currentPlants,
+      newPlant
+    ]);
+  }
+
   return (
     <div
       className={
@@ -38,13 +73,21 @@ export const Home = () => {
         <h1 className="kavoon-regular text-[#426040] text-6xl">Your Garden</h1>
       </div>
 
-      <PlantsList waterMode={waterMode}></PlantsList>
+      <PlantsList
+        plants={plants}
+        setPlants={setPlants}
+        waterMode={waterMode}
+      ></PlantsList>
+
       <button className="lisu-bosa-regular" onClick={toggleAddPlantModal}>
         Add plant
       </button>
 
       <Modal isAddModalOpen={isAddModalOpen}>
-              <AddPlantForm onClose={toggleAddPlantModal}></AddPlantForm>
+        <AddPlantForm
+          onClose={toggleAddPlantModal}
+          onAddPlant={handleOnAddPlant}
+        ></AddPlantForm>
       </Modal>
     </div>
   );

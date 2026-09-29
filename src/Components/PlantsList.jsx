@@ -1,35 +1,7 @@
 import { useState } from "react";
 import { PlantCard } from "./PlantCard";
 
-const initialPlants = [
-  {
-    id: 1,
-    name: "Monstera",
-    description: "The big monstera in the livingroom.",
-    location: "Livingroom",
-    image:
-      "https://i.pinimg.com/736x/e7/48/b3/e748b3ee9dcdbf60bb924fb9d207c3e5.jpg",
-    wateredAt: [
-      new Date("2026-09-16T03:24:00"),
-      new Date("2026-09-18T04:24:00"),
-    ],
-  },
-  {
-    id: 2,
-    name: "Money Tree",
-    description: "Small one on the desk.",
-    location: "Bedroom",
-    image:
-      "https://i.pinimg.com/736x/e7/48/b3/e748b3ee9dcdbf60bb924fb9d207c3e5.jpg",
-    wateredAt: [
-      new Date("2026-09-16T03:24:00"),
-      new Date("2026-09-18T05:44:00"),
-    ],
-  },
-];
-
-export const PlantsList = ({waterMode}) => {
-  const [plants, setPlants] = useState(initialPlants);
+export const PlantsList = ({plants, setPlants, waterMode}) => {
 
   const handleAddPlant = () => {
     //form with name, description, location

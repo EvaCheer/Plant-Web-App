@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormField } from "./FormField";
 
-export const AddPlantForm = ({ onClose }) => {
+export const AddPlantForm = ({ onClose, onAddPlant }) => {
   const [newPlant, setNewPlant] = useState({
     id: null,
     name: "",
@@ -13,15 +13,13 @@ export const AddPlantForm = ({ onClose }) => {
 
   //on each field changed, we update newPlant
   const handleChanges = (e) => {
-    setNewPlant({ ...newPlant, [e.target.name]: [e.target.value] });
-
-    console.log("You filled: ", e.target);
-    console.log("New plant looks like: ", newPlant);
+    setNewPlant({ ...newPlant, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    onAddPlant(newPlant)
+    onClose()
   };
 
   return (
