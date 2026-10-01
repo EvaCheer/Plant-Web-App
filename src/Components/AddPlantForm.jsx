@@ -13,13 +13,28 @@ export const AddPlantForm = ({ onClose, onAddPlant }) => {
 
   //on each field changed, we update newPlant
   const handleChanges = (e) => {
+    if (e.target.name === "image") {
+      const file = e.target.files[0];
+
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+
+        setNewPlant({
+          ...newPlant,
+          image: imageUrl,
+        });
+      }
+
+      return;
+    }
+
     setNewPlant({ ...newPlant, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddPlant(newPlant)
-    onClose()
+    onAddPlant(newPlant);
+    onClose();
   };
 
   return (

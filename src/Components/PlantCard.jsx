@@ -46,7 +46,7 @@ export const PlantCard = ({ plant, onRemove, onWater, onClick }) => {
         <p className="text-sm font-thin text-[#999998]">{wateredText}</p>
       </div>
 
-      {/*       <button
+   {/*          <button
         onClick={() => {
           onRemove(plant.id);
         }}
