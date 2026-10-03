@@ -3,12 +3,14 @@ import { PlantsList } from "./Components/PlantsList.jsx";
 import { Modal } from "./Components/Modal.jsx";
 import { UtilityBar } from "./Components/UtilityBar.jsx";
 import { AddPlantForm } from "./Components/AddPlantForm.jsx";
+import { PlantInfo } from "./Components/PlantInfo.jsx";
 
 export const Home = () => {
   const initialPlants = [
     {
       id: 1,
       name: "Monstera",
+      scientific_name: "Monstera Deliciosa",
       description: "The big monstera in the livingroom.",
       location: "Livingroom",
       image:
@@ -17,10 +19,17 @@ export const Home = () => {
         new Date("2026-09-16T03:24:00"),
         new Date("2026-09-18T04:24:00"),
       ],
+      light: "shade",
+      water: "frequent",
+      soil: "well-drained",
+      care: "easy",
+      propagation: "roots",
+      pets: "poisonous",
     },
     {
       id: 2,
       name: "Money Tree",
+      scientific_name: "Pachira Aquatica",
       description: "Small one on the desk.",
       location: "Bedroom",
       image:
@@ -29,6 +38,12 @@ export const Home = () => {
         new Date("2026-09-16T03:24:00"),
         new Date("2026-09-18T05:44:00"),
       ],
+      light: "part-shade",
+      water: "rare",
+      soil: "well-drained",
+      care: "easy",
+      propagation: "roots",
+      pets: "poisonous",
     },
   ];
 
@@ -53,11 +68,8 @@ export const Home = () => {
   };
 
   const handleOnAddPlant = (newPlant) => {
-    setPlants((currentPlants) => [
-      ...currentPlants,
-      newPlant
-    ]);
-  }
+    setPlants((currentPlants) => [...currentPlants, newPlant]);
+  };
 
   return (
     <div
@@ -88,6 +100,10 @@ export const Home = () => {
           onClose={toggleAddPlantModal}
           onAddPlant={handleOnAddPlant}
         ></AddPlantForm>
+      </Modal>
+
+      <Modal isAddModalOpen={true}>
+        <PlantInfo plant={plants[0]}></PlantInfo>
       </Modal>
     </div>
   );
