@@ -7,7 +7,7 @@ import petsIcon from "../assets/icons/paw.png";
 import soilIcon from "../assets/icons/soil.png";
 import propagationIcon from "../assets/icons/scissors.png";
 
-export const PlantInfo = ({ plant }) => {
+export const PlantInfo = ({ plant, onClose }) => {
   return (
     <div className="flex flex-col sm:flex-row gap-8 md:gap-10">
       <img

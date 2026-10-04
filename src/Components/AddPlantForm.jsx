@@ -44,7 +44,7 @@ export const AddPlantForm = ({ onClose, onAddPlant }) => {
       </h3>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="lisu-bosa-regular bg-[#FFFCF1] flex flex-col gap-4 rounded-md"
+        className="lisu-bosa-regular bg-[#FFFFFF] flex flex-col gap-4 rounded-md"
       >
         <FormField htmlFor="plantName" label="Name*">
           <input
