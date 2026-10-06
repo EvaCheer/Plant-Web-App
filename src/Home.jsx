@@ -58,38 +58,36 @@ export const Home = () => {
     }
   };
 
-  const handleOnAddPlant = (newPlant) => {
+  const handleAddPlant = (newPlant) => {
     setPlants((currentPlants) => [...currentPlants, newPlant]);
   };
 
   const handleRemovePlant = (plantId) => {
-    const newPlants = plants.filter((plant) => plant.id != plantId);
-    setPlants(newPlants);
-    console.log("Plant removed!");
+    setPlants((currentPlants) => {
+      currentPlants.filter((plant) => plant.id !== plantId);
+    });
   };
 
   const handleWaterPlant = (plantId) => {
-    const newPlants = plants.map((plant) => {
-      if (plant.id === plantId) {
-        return {
-          ...plant,
-          wateredAt: [...plant.wateredAt, new Date()],
-        };
-      } else {
+    setPlants((currentPlants) =>
+      currentPlants.map((plant) => {
+        if (plant.id === plantId) {
+          return {
+            ...plant,
+            wateredAt: [...plant.wateredAt, new Date()],
+          };
+        }
         return plant;
-      }
-    });
-
-    setPlants(newPlants);
+      }),
+    );
   };
 
   const handlePlantClick = (plant) => {
-    if (waterMode === true) {
+    if (waterMode) {
       handleWaterPlant(plant.id);
       return;
-    } else {
-      setSelectedPlant(plant);
     }
+    setSelectedPlant(plant);
   };
 
   return (
@@ -102,7 +100,7 @@ export const Home = () => {
       onClick={handleBackgroundClick}
     >
       <div className="flex items-center gap-10 mb-12">
-        <UtilityBar onWater={() => setWaterMode(true)}></UtilityBar>
+        <UtilityBar onWater={() => setWaterMode(true)} />
         <h1 className="kavoon-regular text-[#426040] text-6xl">Your Garden</h1>
       </div>
 
@@ -110,7 +108,7 @@ export const Home = () => {
         plants={plants}
         onPlantClick={handlePlantClick}
         onRemove={handleRemovePlant}
-      ></PlantsList>
+      />
 
       <button
         className="lisu-bosa-regular"
@@ -122,8 +120,8 @@ export const Home = () => {
       <Modal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)}>
         <AddPlantForm
           onClose={() => setIsAddModalOpen(false)}
-          onAddPlant={handleOnAddPlant}
-        ></AddPlantForm>
+          onAddPlant={handleAddPlant}
+        />
       </Modal>
 
       <Modal
@@ -134,7 +132,7 @@ export const Home = () => {
           <PlantInfo
             plant={selectedPlant}
             onClose={() => setSelectedPlant(null)}
-          ></PlantInfo>
+          />
         )}
       </Modal>
     </div>
