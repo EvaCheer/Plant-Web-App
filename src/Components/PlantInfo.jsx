@@ -16,10 +16,10 @@ export const PlantInfo = ({ plant, onClose }) => {
         src={plant.image}
       />
 
-      <section className="flex-1 lisu-bosa-light">
+      <section className="flex-1 font-lora">
         <header className="mb-6 text-[#3C3C3C]">
           <h2 className="text-4xl/12">{plant.name}</h2>
-          <p className="lisu-bosa-light-italic text-2xl">{plant.scientific_name}</p>
+          <p className="font-lora text-2xl">{plant.scientific_name}</p>
         </header>
         <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-[#999998]">
           <PlantInfoItem icon={lightIcon} value={plant.light} />

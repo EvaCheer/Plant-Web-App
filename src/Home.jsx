@@ -101,7 +101,7 @@ export const Home = () => {
     >
       <div className="flex items-center gap-10 mb-12">
         <UtilityBar onWater={() => setWaterMode(true)} />
-        <h1 className="kavoon-regular text-[#426040] text-6xl">Your Garden</h1>
+        <h1 className="font-lora font-light text-[#426040] text-6xl">Your Garden</h1>
       </div>
 
       <PlantsList
@@ -111,7 +111,7 @@ export const Home = () => {
       />
 
       <button
-        className="lisu-bosa-regular"
+        className="font-lora"
         onClick={() => setIsAddModalOpen(true)}
       >
         Add plant

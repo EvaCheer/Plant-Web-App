@@ -73,12 +73,12 @@ export const AddPlantForm = ({ onClose, onAddPlant }) => {
 
   return (
     <>
-      <h3 className="kavoon-regular text-[#426040] text-2xl text-center px-4 pb-4 pt-2">
+      <h3 className="font-lora text-[#426040] text-2xl text-center px-4 pb-4 pt-2">
         Your new plant!
       </h3>
       <form
         onSubmit={handleSubmit}
-        className="lisu-bosa-regular bg-[#FFFFFF] flex flex-col gap-4 rounded-md"
+        className="font-lora bg-[#FFFFFF] flex flex-col gap-4 rounded-md"
       >
         <FormField htmlFor="plantName" label="Name*">
           <input
