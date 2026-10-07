@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { FormField } from "./FormField";
+import { Button } from "./Button";
 
 const initialPlant = {
   id: null,
@@ -141,12 +142,8 @@ export const AddPlantForm = ({ onClose, onAddPlant }) => {
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="px-4 py-2 rounded-lg bg-[#426040] text-[#FFFCF1] hover:opacity-90 transition"
-          >
-            Add Plant
-          </button>
+          <Button value="Add Plant"
+            type="submit"/>
         </div>
       </form>
     </>

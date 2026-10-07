@@ -4,6 +4,8 @@ import { Modal } from "./Components/Modal.jsx";
 import { UtilityBar } from "./Components/UtilityBar.jsx";
 import { AddPlantForm } from "./Components/AddPlantForm.jsx";
 import { PlantInfo } from "./Components/PlantInfo.jsx";
+import { SearchBar } from "./Components/SearchBar.jsx";
+import { toWords } from "number-to-words";
 
 export const Home = () => {
   const initialPlants = [
@@ -49,23 +51,21 @@ export const Home = () => {
 
   const [plants, setPlants] = useState(initialPlants);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [waterMode, setWaterMode] = useState(false);
   const [selectedPlant, setSelectedPlant] = useState(null);
 
-  const handleBackgroundClick = (event) => {
-    if (event.target === event.currentTarget) {
-      setWaterMode(false);
-    }
-  };
+  const plantCount = plants.length;
+  const plantCountText = toWords(plantCount);
+  const capitalizedPlantCount =
+  plantCountText.charAt(0).toUpperCase() + plantCountText.slice(1);
 
   const handleAddPlant = (newPlant) => {
     setPlants((currentPlants) => [...currentPlants, newPlant]);
   };
 
   const handleRemovePlant = (plantId) => {
-    setPlants((currentPlants) => {
-      currentPlants.filter((plant) => plant.id !== plantId);
-    });
+    setPlants((currentPlants) =>
+      currentPlants.filter((plant) => plant.id !== plantId),
+    );
   };
 
   const handleWaterPlant = (plantId) => {
@@ -82,38 +82,27 @@ export const Home = () => {
     );
   };
 
-  const handlePlantClick = (plant) => {
-    if (waterMode) {
-      handleWaterPlant(plant.id);
-      return;
-    }
-    setSelectedPlant(plant);
-  };
-
   return (
-    <div
-      className={
-        waterMode
-          ? "cursor-[url('/watering-can-cursor.png'),_auto]"
-          : "cursor-auto"
-      }
-      onClick={handleBackgroundClick}
-    >
-      <div className="flex items-center gap-10 mb-12">
-        <UtilityBar onWater={() => setWaterMode(true)} />
-        <h1 className="font-lora font-light text-[#426040] text-6xl">Your Garden</h1>
-      </div>
+    <div className="max-w-6xl mx-auto">
+      <header className="p-8 mb-4">
+        <p className="font-nunito text-xs font-bold text-[#99B674] tracking-[.20em] ">
+          FIELD NOTES
+        </p>
+        <div className="flex justify-between">
+          <h1 className="font-lora text-[#426040] pb-1 pt-1 text-6xl">Your Garden</h1>
+          <SearchBar />
+        </div>
+        <p className="text-[#597557] font-nunito">{capitalizedPlantCount} {plantCount === 1 ? "plant" : "plants"} enjoying the sunlight in your home.</p>
+      </header>
 
       <PlantsList
         plants={plants}
-        onPlantClick={handlePlantClick}
+        onWater={handleWaterPlant}
         onRemove={handleRemovePlant}
+        onClick={setSelectedPlant}
       />
 
-      <button
-        className="font-lora"
-        onClick={() => setIsAddModalOpen(true)}
-      >
+      <button className="font-lora" onClick={() => setIsAddModalOpen(true)}>
         Add plant
       </button>
 
