@@ -6,3 +6,8 @@
   --font-lora: "Lora", serif;
   --font-nunito: "Nunito Sans", sans-serif;
 }
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}

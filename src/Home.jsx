@@ -56,7 +56,7 @@ export const Home = () => {
   const plantCount = plants.length;
   const plantCountText = toWords(plantCount);
   const capitalizedPlantCount =
-  plantCountText.charAt(0).toUpperCase() + plantCountText.slice(1);
+    plantCountText.charAt(0).toUpperCase() + plantCountText.slice(1);
 
   const handleAddPlant = (newPlant) => {
     setPlants((currentPlants) => [...currentPlants, newPlant]);
@@ -84,15 +84,20 @@ export const Home = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <header className="p-8 mb-4">
-        <p className="font-nunito text-xs font-bold text-[#99B674] tracking-[.20em] ">
-          FIELD NOTES
-        </p>
-        <div className="flex justify-between">
-          <h1 className="font-lora text-[#426040] pb-1 pt-1 text-6xl">Your Garden</h1>
-          <SearchBar />
+      <header className="flex justify-between p-8 mb-4 items-end">
+        <div>
+          <p className="font-nunito text-xs font-bold text-[#99B674] tracking-[.20em] ">
+            FIELD NOTES
+          </p>
+          <h1 className="font-lora text-[#426040] pb-1 pt-1 text-6xl">
+            Your Garden
+          </h1>
+          <p className="text-[#597557] font-nunito">
+            {capitalizedPlantCount} {plantCount === 1 ? "plant" : "plants"}{" "}
+            enjoying the sunlight in your home.
+          </p>
         </div>
-        <p className="text-[#597557] font-nunito">{capitalizedPlantCount} {plantCount === 1 ? "plant" : "plants"} enjoying the sunlight in your home.</p>
+        <SearchBar />
       </header>
 
       <PlantsList
