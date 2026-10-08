@@ -105,11 +105,12 @@ export const Home = () => {
         onWater={handleWaterPlant}
         onRemove={handleRemovePlant}
         onClick={setSelectedPlant}
+        onAddNewPlant={() => setIsAddModalOpen(true)}
       />
 
-      <button className="font-lora" onClick={() => setIsAddModalOpen(true)}>
+{/*       <button className="font-lora" onClick={() => setIsAddModalOpen(true)}>
         Add plant
-      </button>
+      </button> */}
 
       <Modal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)}>
         <AddPlantForm

@@ -43,7 +43,7 @@ export const PlantCardNew = ({ plant, onRemove, onWater, onClick }) => {
 
       <div className="p-4">
         <div className="pb-4">
-          <h4 className="text-lg">{plant.name}</h4>
+          <h3 className="text-xl pb-1">{plant.name}</h3>
           <section className="flex justify-between font-nunito text-sm font-thin text-[#999998]">
             <p>Last watered</p>
             <p className="font-medium">{wateredText}</p>
