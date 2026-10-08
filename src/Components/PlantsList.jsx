@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { PlantCard } from "./PlantCard";
 import { PlantCardNew } from "./PlantCardNew";
 import { AddNewPlantButton } from "./AddNewPlantButton";
 
