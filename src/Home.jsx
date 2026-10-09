@@ -108,11 +108,15 @@ export const Home = () => {
         onAddNewPlant={() => setIsAddModalOpen(true)}
       />
 
-{/*       <button className="font-lora" onClick={() => setIsAddModalOpen(true)}>
+      {/*       <button className="font-lora" onClick={() => setIsAddModalOpen(true)}>
         Add plant
       </button> */}
 
-      <Modal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)}>
+      <Modal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        variant="add_plant"
+      >
         <AddPlantForm
           onClose={() => setIsAddModalOpen(false)}
           onAddPlant={handleAddPlant}
@@ -122,6 +126,7 @@ export const Home = () => {
       <Modal
         isOpen={selectedPlant !== null}
         onClose={() => setSelectedPlant(null)}
+        variant="info"
       >
         {selectedPlant && (
           <PlantInfo

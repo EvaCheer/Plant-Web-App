@@ -1,11 +1,16 @@
 import { AddPlantForm } from "./AddPlantForm";
 
-export const Modal = ({ isOpen, onClose, children }) => {
+export const Modal = ({ isOpen, onClose, children, variant }) => {
 
   const handleBackgroundClick = (event) => {
     if(event.target === event.currentTarget) {
       onClose();
     }
+  }
+
+  const variants = {
+    info: "bg-[#FFFFFF]",
+    add_plant: "bg-[#F3F7ED]",
   }
 
   return (
@@ -16,7 +21,7 @@ export const Modal = ({ isOpen, onClose, children }) => {
 
       onClick={handleBackgroundClick}
     >
-      <div className="bg-[#FFFFFF] rounded-lg p-6">{children}</div>
+      <div className={`rounded-lg p-6 ${variants[variant]}`}>{children}</div>
     </div>
   );
 };
