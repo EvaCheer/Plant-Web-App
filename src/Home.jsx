@@ -6,6 +6,7 @@ import { AddPlantForm } from "./Components/AddPlantForm.jsx";
 import { PlantInfo } from "./Components/PlantInfo.jsx";
 import { SearchBar } from "./Components/SearchBar.jsx";
 import { toWords } from "number-to-words";
+import { PlantInfoNew } from "./Components/PlantInfoNew.jsx";
 
 export const Home = () => {
   const initialPlants = [
@@ -128,10 +129,15 @@ export const Home = () => {
         onClose={() => setSelectedPlant(null)}
         variant="info"
       >
-        {selectedPlant && (
+{/*         {selectedPlant && (
           <PlantInfo
             plant={selectedPlant}
             onClose={() => setSelectedPlant(null)}
+          />
+        )} */}
+                {selectedPlant && (
+          <PlantInfoNew
+            plant={selectedPlant}
           />
         )}
       </Modal>
