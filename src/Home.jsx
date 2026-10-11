@@ -90,6 +90,16 @@ export const Home = () => {
     );
   };
 
+  const handleRepotPlant = (newPlant) => {
+    setPlants((currentPlants) =>
+      currentPlants.map((current) => 
+        current.id === newPlant.id ? newPlant : current
+      ),
+    );
+
+  setSelectedPlant(newPlant);
+  };
+
   return (
     <div className="max-w-6xl mx-auto">
       <header className="flex justify-between p-8 mb-4 items-end">
@@ -136,7 +146,9 @@ export const Home = () => {
         onClose={() => setSelectedPlant(null)}
         variant="info"
       >
-        {selectedPlant && <PlantInfo plant={selectedPlant} />}
+        {selectedPlant && (
+          <PlantInfo plant={selectedPlant} onRepotPlant={handleRepotPlant} />
+        )}
       </Modal>
     </div>
   );

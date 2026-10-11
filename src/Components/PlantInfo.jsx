@@ -13,17 +13,30 @@ import {
   Scissors,
   CalendarDays,
 } from "lucide-react";
-import {
-  getDaysSince,
-  getWateredText as dateToText,
-  formatDate,
-} from "../utils/dateUtils";
+import { getWateredText as dateToText, formatDate } from "../utils/dateUtils";
 
-export const PlantInfo = ({ plant }) => {
+export const PlantInfo = ({ plant, onRepotPlant }) => {
   const [activeTab, setActiveTab] = useState("watering");
+  const [repotDate, setRepotDate] = useState("");
 
-  let lastWater = plant.wateredAt[plant.wateredAt.lenght - 1];
-  let daysSinceWater = getDaysSince();
+  const handleRepotSubmit = (event) => {
+    event.preventDefault();
+    console.log(repotDate)
+
+    const [year, month, day] = repotDate.split("-").map(Number)
+    const selectedDate = new Date(year, month - 1, day)
+    console.log(selectedDate)
+
+    const newPlant = {
+      ...plant, 
+      repottedAt: [
+      ...(plant.repottedAt ?? []), selectedDate
+      ]
+    }
+
+    onRepotPlant(newPlant)
+    setRepotDate("")
+  };
 
   return (
     <div className="font-lora text-[#426040]">
@@ -100,6 +113,21 @@ export const PlantInfo = ({ plant }) => {
               {formatDate(plant.repottedAt[plant.repottedAt.length - 1])}
             </p>
           </section>
+
+          <form className="mb-4" onSubmit={handleRepotSubmit}>
+            <label htmlFor="repotDate">Repotting date: </label>
+            <div className="flex">
+              <input
+                type="date"
+                id="repotDate"
+                name="repotDate"
+                value={repotDate}
+                onChange={(e) => setRepotDate(e.target.value)}
+              ></input>
+              <button type="submit">Repot</button>
+            </div>
+          </form>
+
           <section className="flex flex-col gap-4">
             {plant.repottedAt.map((date) => {
               return (
