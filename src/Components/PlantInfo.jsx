@@ -21,21 +21,21 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
 
   const handleRepotSubmit = (event) => {
     event.preventDefault();
-    console.log(repotDate)
+    console.log(repotDate);
 
-    const [year, month, day] = repotDate.split("-").map(Number)
-    const selectedDate = new Date(year, month - 1, day)
-    console.log(selectedDate)
+    const [year, month, day] = repotDate.split("-").map(Number);
+    const selectedDate = new Date(year, month - 1, day);
+    console.log(selectedDate);
 
     const newPlant = {
-      ...plant, 
-      repottedAt: [
-      ...(plant.repottedAt ?? []), selectedDate
-      ]
-    }
+      ...plant,
+      repottedAt: [...(plant.repottedAt ?? []), selectedDate].sort(
+        (a, b) => b.getTime() - a.getTime(),
+      ),
+    };
 
-    onRepotPlant(newPlant)
-    setRepotDate("")
+    onRepotPlant(newPlant);
+    setRepotDate("");
   };
 
   return (
@@ -85,13 +85,15 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
             <h2 className="text-xl mb-2">Watering history</h2>
             <p className="font-nunito text-sm">
               Last watered:{" "}
-              {dateToText(plant.wateredAt[plant.wateredAt.length - 1])}
+              {plant.wateredAt.length
+                ? dateToText(plant.wateredAt[plant.wateredAt.length - 1])
+                : "Never watered"}
             </p>
           </section>
           <section className="flex flex-col gap-4">
             {plant.wateredAt.map((date) => {
               return (
-                <div className="flex items-center gap-3">
+                <div key={date.getTime()} className="flex items-center gap-3">
                   <CalendarDays size={18} color="#99B674" />
                   <div className="font-nunito">
                     <p className="text-sm">{formatDate(date)}</p>
@@ -110,7 +112,9 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
             <h2 className="text-xl mb-2">Repotting history</h2>
             <p className="font-nunito text-sm">
               Last repotted:{" "}
-              {formatDate(plant.repottedAt[plant.repottedAt.length - 1])}
+              {plant.repottedAt.length
+                ? formatDate(plant.repottedAt[0])
+                : "Never repotted"}
             </p>
           </section>
 
@@ -131,7 +135,7 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
           <section className="flex flex-col gap-4">
             {plant.repottedAt.map((date) => {
               return (
-                <div className="flex items-center gap-3">
+                <div key={date.getTime()} className="flex items-center gap-3">
                   <CalendarDays size={18} color="#99B674" />
                   <div className="font-nunito">
                     <p className="text-sm">{formatDate(date)}</p>
