@@ -10,6 +10,7 @@ const initialPlant = {
   location: "",
   image: "",
   wateredAt: [],
+  repottedAt: [],
   light: "",
   water: "",
   soil: "",

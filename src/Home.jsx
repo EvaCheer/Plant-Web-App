@@ -6,7 +6,6 @@ import { AddPlantForm } from "./Components/AddPlantForm.jsx";
 import { PlantInfo } from "./Components/PlantInfo.jsx";
 import { SearchBar } from "./Components/SearchBar.jsx";
 import { toWords } from "number-to-words";
-import { PlantInfoNew } from "./Components/PlantInfoNew.jsx";
 
 export const Home = () => {
   const initialPlants = [
@@ -22,12 +21,16 @@ export const Home = () => {
         new Date("2026-09-16T03:24:00"),
         new Date("2026-09-18T04:24:00"),
       ],
-      light: "shade",
-      water: "frequent",
-      soil: "well-drained",
-      care: "easy",
-      propagation: "roots",
-      pets: "poisonous",
+      repottedAt: [
+        new Date("2026-09-04T03:24:00"),
+        new Date("2026-08-01T04:24:00"),
+      ],
+      light: "Shade",
+      water: "Frequent",
+      soil: "Well-drained",
+      care: "Easy",
+      propagation: "Roots",
+      pets: "Poisonous",
     },
     {
       id: 2,
@@ -41,12 +44,16 @@ export const Home = () => {
         new Date("2026-09-16T03:24:00"),
         new Date("2026-09-18T05:44:00"),
       ],
-      light: "part-shade",
-      water: "rare",
-      soil: "well-drained",
-      care: "easy",
-      propagation: "roots",
-      pets: "poisonous",
+      repottedAt: [
+        new Date("2026-07-04T03:24:00"),
+        new Date("2026-06-01T04:24:00"),
+      ],
+      light: "Part-shade",
+      water: "Rare",
+      soil: "Well-drained",
+      care: "Easy",
+      propagation: "Roots",
+      pets: "Poisonous",
     },
   ];
 
@@ -129,17 +136,7 @@ export const Home = () => {
         onClose={() => setSelectedPlant(null)}
         variant="info"
       >
-{/*         {selectedPlant && (
-          <PlantInfo
-            plant={selectedPlant}
-            onClose={() => setSelectedPlant(null)}
-          />
-        )} */}
-                {selectedPlant && (
-          <PlantInfoNew
-            plant={selectedPlant}
-          />
-        )}
+        {selectedPlant && <PlantInfo plant={selectedPlant} />}
       </Modal>
     </div>
   );
