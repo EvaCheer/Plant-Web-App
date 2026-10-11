@@ -2,9 +2,14 @@ import { useState } from "react";
 import { MapPin } from "lucide-react";
 import { TabButton } from "./TabButton";
 import { Droplet, Shovel, Leaf } from "lucide-react";
+import { getDaysSince, getWateredText } from "../utils/dateUtils";
 
 export const PlantInfoNew = ({ plant }) => {
   const [activeTab, setActiveTab] = useState("watering");
+
+  let lastWater = plant.wateredAt[plant.wateredAt.lenght - 1];
+  let daysSinceWater = getDaysSince();
+  
   return (
     <div className="font-lora text-[#426040]">
       <header className="flex mb-4">
@@ -46,17 +51,23 @@ export const PlantInfoNew = ({ plant }) => {
         ></TabButton>
       </div>
 
-      {activeTab == "watering" && <div>
-        <p>Watering</p>
-        </div>}
+      {activeTab == "watering" && (
+        <div>
+          <p>Watering</p>
+        </div>
+      )}
 
-      {activeTab == "repotting" && <div>
-        <p>Repotting</p>
-        </div>}
+      {activeTab == "repotting" && (
+        <div>
+          <p>Repotting</p>
+        </div>
+      )}
 
-      {activeTab == "details" && <div>
-        <p>Details</p>
-        </div>}
+      {activeTab == "details" && (
+        <div>
+          <p>Details</p>
+        </div>
+      )}
     </div>
   );
 };

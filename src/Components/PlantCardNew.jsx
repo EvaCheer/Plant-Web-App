@@ -1,34 +1,10 @@
 import { Button } from "./Button";
+import { getDaysSince, getWateredText } from "../utils/dateUtils";
 
 export const PlantCardNew = ({ plant, onRemove, onWater, onClick }) => {
-  const getDaysSinceWater = (date) => {
-    if (date === undefined) {
-      return undefined;
-    }
-
-    const millisecondsPerDay = 1000 * 60 * 60 * 24;
-    return Math.floor((Date.now() - date.getTime()) / millisecondsPerDay);
-  };
-
   const lastWatered = plant.wateredAt[plant.wateredAt.length - 1];
-  const daysSinceWater = getDaysSinceWater(lastWatered);
+  const daysSinceWater = getDaysSince(lastWatered);
   const wateredToday = daysSinceWater === 0;
-
-  let wateredText;
-
-  switch (daysSinceWater) {
-    case 0:
-      wateredText = "Today";
-      break;
-    case 1:
-      wateredText = "Yesterday";
-      break;
-    case undefined:
-      wateredText = "no water history";
-      break;
-    default:
-      wateredText = `${daysSinceWater} days ago`;
-  }
 
   return (
     <div
@@ -46,7 +22,7 @@ export const PlantCardNew = ({ plant, onRemove, onWater, onClick }) => {
           <h3 className="text-xl pb-1">{plant.name}</h3>
           <section className="flex justify-between font-nunito text-sm font-thin text-[#999998]">
             <p>Last watered</p>
-            <p className="font-medium">{wateredText}</p>
+            <p className="font-medium">{getWateredText(lastWatered)}</p>
           </section>
         </div>
         <Button
@@ -54,8 +30,9 @@ export const PlantCardNew = ({ plant, onRemove, onWater, onClick }) => {
           value={wateredToday ? "Watered" : "Water"}
           onClick={(e) => {
             e.stopPropagation();
-            onWater(plant.id)}}
-          variant={ wateredToday ? "watered" : "primary"}
+            onWater(plant.id);
+          }}
+          variant={wateredToday ? "watered" : "primary"}
         />
       </div>
     </div>
