@@ -14,18 +14,41 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { getWateredText as dateToText, formatDate } from "../utils/dateUtils";
+import { Button } from "./Button";
+
+const getTodayDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
 
 export const PlantInfo = ({ plant, onRepotPlant }) => {
   const [activeTab, setActiveTab] = useState("watering");
-  const [repotDate, setRepotDate] = useState("");
+  const [repotDate, setRepotDate] = useState(getTodayDate());
 
   const handleRepotSubmit = (event) => {
     event.preventDefault();
     console.log(repotDate);
+    if (!repotDate) return;
 
     const [year, month, day] = repotDate.split("-").map(Number);
     const selectedDate = new Date(year, month - 1, day);
-    console.log(selectedDate);
+    console.log("Date: ", selectedDate);
+
+    if (isNaN(selectedDate.getTime())) return;
+    // check to see if selected date is in the future
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate > today) return;
+
+    const isInArray = (plant.repottedAt ?? []).some((currentDate) => {
+      return currentDate.getTime() === selectedDate.getTime();
+    });
+
+    if (isInArray) return;
 
     const newPlant = {
       ...plant,
@@ -35,11 +58,11 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
     };
 
     onRepotPlant(newPlant);
-    setRepotDate("");
+    setRepotDate(getTodayDate());
   };
 
   return (
-    <div className="font-lora text-[#426040]">
+    <div className="font-lora text-[#426040] w-[600px] max-w-full p-2">
       <header className="flex mb-4">
         <img
           className="w-30 aspect-square object-cover rounded-lg"
@@ -118,21 +141,28 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
             </p>
           </section>
 
-          <form className="mb-4" onSubmit={handleRepotSubmit}>
+          <form
+            className="mb-8 font-nunito text-sm"
+            onSubmit={handleRepotSubmit}
+          >
             <label htmlFor="repotDate">Repotting date: </label>
-            <div className="flex">
+            <div className="flex justify-between gap-2 mt-2">
               <input
                 type="date"
                 id="repotDate"
                 name="repotDate"
                 value={repotDate}
+                className="flex-1 min-w-0 p-2 text-sm rounded-md shadow-sm
+                border border-gray-200
+                focus:border-[#E5B84B] focus:ring-1 focus:ring-[#E5B84B]
+                   focus:outline-none"
                 onChange={(e) => setRepotDate(e.target.value)}
               ></input>
-              <button type="submit">Repot</button>
+              <Button type="submit" value="Repot"></Button>
             </div>
           </form>
 
-          <section className="flex flex-col gap-4">
+          <section className="flex flex-col gap-4 h-48 overflow-y-auto">
             {plant.repottedAt.map((date) => {
               return (
                 <div key={date.getTime()} className="flex items-center gap-3">

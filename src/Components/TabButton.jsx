@@ -1,11 +1,10 @@
 export const TabButton = ({ label, isActive, icon: Icon, onClick }) => {
   return (
-    <div>
       <button
         onClick={onClick}
         className={`flex flex-1 items-center justify-center 
              font-nunito text-sm
-             gap-1 p-2 rounded-md  transition-colors ${
+             gap-1 p-2 rounded-md h-7 transition-colors ${
                isActive
                  ? "bg-[#F2F7EC] text-[#426040] shadow-sm"
                  : "text-[#777D70]"
@@ -14,6 +13,5 @@ export const TabButton = ({ label, isActive, icon: Icon, onClick }) => {
         <Icon size={16} />
         {label}
       </button>
-    </div>
   );
 };
