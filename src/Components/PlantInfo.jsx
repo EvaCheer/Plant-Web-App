@@ -12,9 +12,12 @@ import {
   Sun,
   Scissors,
   CalendarDays,
+  TrashIcon,
 } from "lucide-react";
 import { getWateredText as dateToText, formatDate } from "../utils/dateUtils";
 import { Button } from "./Button";
+import { RemoveButton } from "./RemoveButton";
+import { Modal } from "./Modal";
 
 const getTodayDate = () => {
   const today = new Date();
@@ -25,9 +28,10 @@ const getTodayDate = () => {
   return `${year}-${month}-${day}`;
 };
 
-export const PlantInfo = ({ plant, onRepotPlant }) => {
+export const PlantInfo = ({ plant, onRepotPlant, onRemovePlant }) => {
   const [activeTab, setActiveTab] = useState("watering");
   const [repotDate, setRepotDate] = useState(getTodayDate());
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
 
   const handleRepotSubmit = (event) => {
     event.preventDefault();
@@ -62,7 +66,7 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
   };
 
   return (
-    <div className="font-lora text-[#426040] w-[600px] max-w-full p-2">
+    <div className="flex flex-col font-lora text-[#426040] w-[600px] max-w-full p-2">
       <header className="flex mb-4">
         <img
           className="w-30 aspect-square object-cover rounded-lg"
@@ -80,7 +84,7 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
           </div>
         </section>
       </header>
-
+      {/* menu to choose to render watering, repotting or details */}
       <div className="flex gap-1 justify-between bg-[#E9EEDD] p-1 rounded-md">
         <TabButton
           label="Watering"
@@ -101,7 +105,7 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
           onClick={() => setActiveTab("details")}
         ></TabButton>
       </div>
-
+      {/*render watering section */}
       {activeTab == "watering" && (
         <div>
           <section className="my-6">
@@ -128,7 +132,7 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
           </section>
         </div>
       )}
-
+      {/*render repotting section */}
       {activeTab == "repotting" && (
         <div>
           <section className="my-6">
@@ -177,7 +181,7 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
           </section>
         </div>
       )}
-
+      {/*render details section */}
       {activeTab == "details" && (
         <div>
           <section className="my-4">
@@ -206,6 +210,41 @@ export const PlantInfo = ({ plant, onRepotPlant }) => {
           </section>
         </div>
       )}
+      <button
+        onClick={() => setIsRemoveModalOpen(true)}
+        className="flex items-center gap-2 
+      font-nunito p-2 rounded-md
+      hover:bg-[#F2F7EC] text-red-600 text-sm font-semibold self-end"
+      >
+        <TrashIcon size={14} />
+        Remove plant
+      </button>
+
+      <Modal isOpen={isRemoveModalOpen} onClose={() => setIsRemoveModalOpen(false)} variant="add_plant">
+        <div className="font-nunito">
+
+        <h3 className="text-lg font-semibold pb-2">Remove {plant.name}?</h3>
+        <p className="text-sm pb-4">
+          This removes the plant and its watering and repotting history from
+          your collection.
+        </p>
+        <div className="flex justify-end gap-2">
+          {/* button for cancel */}
+          <button className="text-sm font-semibold border border-gray-200 rounded-md
+          p-2 px-4
+          hover:bg-[#E9EEDD]"
+          onClick={() => setIsRemoveModalOpen(false)}>
+            Keep plant
+          </button>
+
+
+          <button className="text-sm font-semibold border border-gray-200 rounded-md
+          p-2 bg-red-600 text-white px-4
+          hover:bg-red-500"
+          onClick={() => onRemovePlant(plant.id)}>Remove plant</button>
+        </div>
+          </div>
+      </Modal>
     </div>
   );
 };

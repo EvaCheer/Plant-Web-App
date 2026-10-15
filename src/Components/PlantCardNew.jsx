@@ -1,7 +1,7 @@
 import { Button } from "./Button";
 import { getDaysSince, getWateredText } from "../utils/dateUtils";
 
-export const PlantCardNew = ({ plant, onRemove, onWater, onClick }) => {
+export const PlantCardNew = ({ plant, onWater, onClick }) => {
   const lastWatered = plant.wateredAt[plant.wateredAt.length - 1];
   const daysSinceWater = getDaysSince(lastWatered);
   const wateredToday = daysSinceWater === 0;

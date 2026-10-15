@@ -74,6 +74,8 @@ export const Home = () => {
     setPlants((currentPlants) =>
       currentPlants.filter((plant) => plant.id !== plantId),
     );
+
+    setSelectedPlant(null);
   };
 
   const handleWaterPlant = (plantId) => {
@@ -92,22 +94,22 @@ export const Home = () => {
 
   const handleRepotPlant = (newPlant) => {
     setPlants((currentPlants) =>
-      currentPlants.map((current) => 
-        current.id === newPlant.id ? newPlant : current
+      currentPlants.map((current) =>
+        current.id === newPlant.id ? newPlant : current,
       ),
     );
 
-  setSelectedPlant(newPlant);
+    setSelectedPlant(newPlant);
   };
 
   return (
     <div className="max-w-6xl mx-auto">
-      <header className="flex justify-between p-8 mb-4 items-end">
+      <header className="flex flex-col gap-5 p-4 mb-4 items-stretch sm:p-6 md:flex-row md:justify-between md:items-end md:p-8">
         <div>
           <p className="font-nunito text-xs font-bold text-[#99B674] tracking-[.20em] ">
             FIELD NOTES
           </p>
-          <h1 className="font-lora text-[#426040] pb-1 pt-1 text-6xl">
+          <h1 className="font-lora text-[#426040] pb-1 pt-1 text-4xl sm:text-5xl md:text-6xl">
             Your Garden
           </h1>
           <p className="text-[#597557] font-nunito">
@@ -121,14 +123,9 @@ export const Home = () => {
       <PlantsList
         plants={plants}
         onWater={handleWaterPlant}
-        onRemove={handleRemovePlant}
         onClick={setSelectedPlant}
         onAddNewPlant={() => setIsAddModalOpen(true)}
       />
-
-      {/*       <button className="font-lora" onClick={() => setIsAddModalOpen(true)}>
-        Add plant
-      </button> */}
 
       <Modal
         isOpen={isAddModalOpen}
@@ -147,7 +144,11 @@ export const Home = () => {
         variant="info"
       >
         {selectedPlant && (
-          <PlantInfo plant={selectedPlant} onRepotPlant={handleRepotPlant} />
+          <PlantInfo
+            plant={selectedPlant}
+            onRepotPlant={handleRepotPlant}
+            onRemovePlant={handleRemovePlant}
+          />
         )}
       </Modal>
     </div>
