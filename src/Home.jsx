@@ -18,8 +18,19 @@ export const Home = () => {
       image:
         "https://i.pinimg.com/736x/e7/48/b3/e748b3ee9dcdbf60bb924fb9d207c3e5.jpg",
       wateredAt: [
-        new Date("2026-09-16T03:24:00"),
-        new Date("2026-09-18T04:24:00"),
+        new Date("2026-08-01"),
+        new Date("2026-08-05"),
+        new Date("2026-08-15"),
+        new Date("2026-08-24"),
+        new Date("2026-08-28"),
+        new Date("2026-09-01"),
+        new Date("2026-09-05"),
+        new Date("2026-09-10"),
+        new Date("2026-09-16"),
+        new Date("2026-09-18"),
+        new Date("2026-09-25"),
+        new Date("2026-10-01"),
+        new Date("2026-10-17"),
       ],
       repottedAt: [
         new Date("2026-09-04T03:24:00"),

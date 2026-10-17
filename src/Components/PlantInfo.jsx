@@ -16,8 +16,9 @@ import {
 } from "lucide-react";
 import { getWateredText as dateToText, formatDate } from "../utils/dateUtils";
 import { Button } from "./Button";
-import { RemoveButton } from "./RemoveButton";
 import { Modal } from "./Modal";
+import { IntervalsChart } from "./IntervalsChart";
+
 
 const getTodayDate = () => {
   const today = new Date();
@@ -117,7 +118,10 @@ export const PlantInfo = ({ plant, onRepotPlant, onRemovePlant }) => {
                 : "Never watered"}
             </p>
           </section>
-          <section className="flex flex-col gap-4">
+          <section>
+                <IntervalsChart dates={plant.wateredAt} />
+          </section>
+          <section className="flex flex-col gap-4 h-48 overflow-y-auto">
             {plant.wateredAt.map((date) => {
               return (
                 <div key={date.getTime()} className="flex items-center gap-3">

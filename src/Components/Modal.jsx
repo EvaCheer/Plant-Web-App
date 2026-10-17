@@ -1,5 +1,3 @@
-import { AddPlantForm } from "./AddPlantForm";
-
 export const Modal = ({ isOpen, onClose, children, variant }) => {
 
   const handleBackgroundClick = (event) => {

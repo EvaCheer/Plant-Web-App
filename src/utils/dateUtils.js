@@ -36,3 +36,10 @@ export const formatDate = (date) => {
 
   return `${day}.${month}.${year}`;
 }
+
+export const formatDateShort = (date) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+};
