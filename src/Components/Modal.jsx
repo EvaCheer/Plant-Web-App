@@ -19,7 +19,7 @@ export const Modal = ({ isOpen, onClose, children, variant }) => {
 
       onClick={handleBackgroundClick}
     >
-      <div className={`max-w-full min-w-0 rounded-lg p-4 sm:p-6 ${variants[variant]}`}>{children}</div>
+      <div className={`max-w-full min-w-0 max-h-full overflow-y-auto rounded-lg p-4 sm:p-6 ${variants[variant]}`}>{children}</div>
     </div>
   );
 };
