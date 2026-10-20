@@ -2,7 +2,7 @@
 
 A web application for managing your indoor plant collection and keeping track of plant care. Plant Manager provides a simple, interactive interface for organizing your plants, recording watering and repotting activities, and keeping useful care information in one place.
 
-[**Live Demo**](https://evacheer.github.io/Plant-Web-App/) ·
+[**Live Demo**](https://evacheer.github.io/Plant-Web-App/)
 
 ## Features
 
