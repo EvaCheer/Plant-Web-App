@@ -1,16 +1,25 @@
-# React + Vite
+# Plant Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application for managing your indoor plant collection and keeping track of plant care. Plant Manager provides a simple, interactive interface for organizing your plants, recording watering and repotting activities, and keeping useful care information in one place.
 
-Currently, two official plugins are available:
+[**Live Demo**](https://evacheer.github.io/Plant-Web-App/) ·
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Plant Collection** — View and organize your indoor plants in a visual collection.
+- **Add and Remove Plants** — Add new plants with details such as name, scientific name, location, image, and care requirements.
+- **Watering Tracker** — Record watering dates and view watering history to keep track of your plants' care routines.
+- **Repotting History** — Record repotting dates and review previous repotting activities.
+- **Plant Information** — View individual plant details, including location, watering history, repotting history, and care information.
+- **Interactive Interface** — Navigate between plant information and care-related views through a component-based UI.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Built With
 
-## Expanding the ESLint configuration
+- **React** — Component-based user interface and state management.
+- **JavaScript** — Application logic and interactions.
+- **Tailwind CSS** — Styling and responsive layouts.
+- **Vite** — Development server and build tool.
+- **Lucide React** — Icons.
+## About the Project
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Plant Manager is a personal project developed to practice building interactive web applications with React. It explores component-based architecture, state management, reusable UI components, form handling, and presenting time-based plant care data in a clear and accessible way.
