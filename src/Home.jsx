@@ -128,7 +128,7 @@ export const Home = () => {
             enjoying the sunlight in your home.
           </p>
         </div>
-        <SearchBar />
+        <SearchBar className="md:w-64" placeholder="Search your plants..."/>
       </header>
 
       <PlantsList

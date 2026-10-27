@@ -85,7 +85,7 @@ export const PlantInfo = ({ plant, onRepotPlant, onRemovePlant }) => {
           </div>
         </section>
       </header>
-      {/* menu to choose to render watering, repotting or details */}
+      {/* menu to choose to show watering, repotting or details */}
       <div className="flex gap-1 justify-between bg-[#E9EEDD] p-1 rounded-md">
         <TabButton
           label="Watering"

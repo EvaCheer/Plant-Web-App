@@ -10,7 +10,7 @@ export const TabButton = ({ label, isActive, icon: Icon, onClick }) => {
                  : "text-[#777D70]"
              }`}
       >
-        <Icon size={16} />
+       {Icon && <Icon size={16} />}
         {label}
       </button>
   );
