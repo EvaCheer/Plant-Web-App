@@ -24,8 +24,14 @@ const initialPlant = {
 export const AddPlantForm = ({ onClose, onAddPlant }) => {
   const [newPlant, setNewPlant] = useState(initialPlant);
   const [activeTab, setActiveTab] = useState("Search");
-  const imageInputRef = useRef(null);
   const [query, setQuery] = useState("");
+  const imageInputRef = useRef(null);
+
+  //in the deploy the import.meta.env.VITE_PERENUAL_KEY will return undefined
+  //logic is if we dont have access to the key, searchEnabled is false
+  //and later, we dont show the tab menu and option to search, only the form
+  let searchEnabled = Boolean(import.meta.env.VITE_PERENUAL_KEY);
+  const currentTab = searchEnabled ? activeTab : "Form";
 
   const handleSearch = (searchTerm) => {
     console.log("Searching for:", searchTerm);
@@ -82,7 +88,6 @@ export const AddPlantForm = ({ onClose, onAddPlant }) => {
 
     imageInputRef.current.value = "";
   };
-
   return (
     <div className="w-[400px] max-w-full">
       <div className="flex flex-col mb-2 gap-2 mb-4">
@@ -93,21 +98,23 @@ export const AddPlantForm = ({ onClose, onAddPlant }) => {
           Look it up, or fill in the details yourself.
         </p>
       </div>
-      <div className="flex gap-1 justify-between bg-[#E9EEDD] p-1 rounded-md mb-4">
-        <TabButton
-          label="Search"
-          isActive={activeTab === "Search"}
-          onClick={() => setActiveTab("Search")}
-        ></TabButton>
-        <TabButton
-          label="Fill in myself"
-          isActive={activeTab === "Form"}
-          onClick={() => setActiveTab("Form")}
-        ></TabButton>
-      </div>
+      {searchEnabled && (
+        <div className="flex gap-1 justify-between bg-[#E9EEDD] p-1 rounded-md mb-4">
+          <TabButton
+            label="Search"
+            isActive={activeTab === "Search"}
+            onClick={() => setActiveTab("Search")}
+          ></TabButton>
+          <TabButton
+            label="Fill in myself"
+            isActive={activeTab === "Form"}
+            onClick={() => setActiveTab("Form")}
+          ></TabButton>
+        </div>
+      )}
 
       {/* Show Search Bar */}
-      {activeTab === "Search" && (
+      {currentTab === "Search" && (
         <div className="my-2">
           <SearchBar
             value={query}
@@ -119,7 +126,7 @@ export const AddPlantForm = ({ onClose, onAddPlant }) => {
       )}
 
       {/* Show form */}
-      {activeTab === "Form" && (
+      {currentTab === "Form" && (
         <div>
           <form
             onSubmit={handleSubmit}
